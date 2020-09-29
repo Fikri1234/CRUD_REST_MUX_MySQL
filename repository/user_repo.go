@@ -128,13 +128,13 @@ func UpdateUser(usr model.User) (model.User, error) {
 	if err != nil {
 		return user, err
 	}
-	_, queryError := crt.Exec(usr.Username, usr.Password, user.ID)
+	_, queryError := crt.Exec(usr.Username, usr.Password, usr.ID)
 	if queryError != nil {
 		return user, err
 	}
 
 	// find user by id
-	res, err := GetUserByID(user.ID)
+	res, err := GetUserByID(usr.ID)
 	if err != nil {
 		return user, err
 	}

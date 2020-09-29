@@ -115,17 +115,17 @@ func UpdateUserDetail(usr model.UserDetail) (model.UserDetail, error) {
 
 	var userDtl model.UserDetail
 
-	crt, err := db.Prepare("update m_user set address =?, dob =?, pob =?, phone =?, email =?, user_id =? where id=?")
+	crt, err := db.Prepare("update m_user_detail set address =?, dob =?, pob =?, phone =?, email =?, user_id =? where id=?")
 	if err != nil {
 		return userDtl, err
 	}
-	_, queryError := crt.Exec(usr.ID, usr.Address, usr.DOB, usr.POB, usr.Phone, usr.Email, usr.UserID)
+	_, queryError := crt.Exec(usr.Address, usr.DOB, usr.POB, usr.Phone, usr.Email, usr.UserID, usr.ID)
 	if queryError != nil {
 		return userDtl, err
 	}
 
 	// find user detail by id
-	res, err := GetUserDetailByID(userDtl.ID)
+	res, err := GetUserDetailByID(usr.ID)
 	if err != nil {
 		return userDtl, err
 	}
@@ -138,7 +138,7 @@ func DeleteUserDetailByID(id int64) error {
 	db := configmysql.Connect()
 	defer db.Close()
 
-	crt, err := db.Prepare("delete m_user_detail where id=?")
+	crt, err := db.Prepare("delete from m_user_detail where id=?")
 	if err != nil {
 		return err
 	}

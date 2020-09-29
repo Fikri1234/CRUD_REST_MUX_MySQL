@@ -67,7 +67,7 @@ func CreateUserDetail(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	util.ResponseWithJSON(w, http.StatusOK, userDtl)
+	util.ResponseWithJSON(w, http.StatusCreated, userDtl)
 }
 
 // UpdateUserDetail put
@@ -81,13 +81,13 @@ func UpdateUserDetail(w http.ResponseWriter, r *http.Request) {
 
 	json.Unmarshal([]byte(body), &userDtl)
 
-	userDtl, err := repository.UpdateUserDetail(userDtl)
+	usrDtl, err := repository.UpdateUserDetail(userDtl)
 	if err != nil {
 		util.ResponseWithError(w, http.StatusBadRequest, err.Error())
 		return
 	}
 
-	util.ResponseWithJSON(w, http.StatusOK, userDtl)
+	util.ResponseWithJSON(w, http.StatusOK, usrDtl)
 }
 
 // DeleteUserDetailByID ...

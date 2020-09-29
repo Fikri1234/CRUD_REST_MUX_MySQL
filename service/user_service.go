@@ -69,7 +69,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// json.NewEncoder(w).Encode(user)
-	util.ResponseWithJSON(w, http.StatusOK, user)
+	util.ResponseWithJSON(w, http.StatusCreated, user)
 }
 
 // UpdateUser post
@@ -83,13 +83,13 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 
 	json.Unmarshal([]byte(body), &user)
 
-	user, err := repository.UpdateUser(user)
+	usr, err := repository.UpdateUser(user)
 	if err != nil {
 		util.ResponseWithError(w, http.StatusBadRequest, err.Error())
 		return
 	}
 
-	util.ResponseWithJSON(w, http.StatusOK, user)
+	util.ResponseWithJSON(w, http.StatusOK, usr)
 }
 
 // DeleteUserByID ...
