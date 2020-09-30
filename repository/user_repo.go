@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"CRUD_REST_MUX_MySQL/configmysql"
+	"CRUD_REST_MUX_MySQL/configuration"
 	"CRUD_REST_MUX_MySQL/model"
 	"log"
 
@@ -19,7 +19,7 @@ import (
 // var client = &http.Client{}
 
 // func initialize() {
-// 	db = configmysql.Connect()
+// 	db = configuration.Connect()
 
 // 	// defer db.Close()
 
@@ -31,7 +31,7 @@ import (
 
 // GetUserByID ...
 func GetUserByID(id int64) (model.User, error) {
-	db := configmysql.Connect()
+	db := configuration.Connect()
 
 	var user model.User
 
@@ -56,7 +56,7 @@ func GetUserByID(id int64) (model.User, error) {
 
 // GetUsers ...
 func GetUsers() ([]model.User, error) {
-	db := configmysql.Connect()
+	db := configuration.Connect()
 
 	var user model.User
 	var users []model.User
@@ -87,7 +87,7 @@ func GetUsers() ([]model.User, error) {
 
 // CreateUser ...
 func CreateUser(usr model.User) (model.User, error) {
-	db := configmysql.Connect()
+	db := configuration.Connect()
 	defer db.Close()
 
 	var user model.User
@@ -119,7 +119,7 @@ func CreateUser(usr model.User) (model.User, error) {
 
 // UpdateUser ...
 func UpdateUser(usr model.User) (model.User, error) {
-	db := configmysql.Connect()
+	db := configuration.Connect()
 	defer db.Close()
 
 	var user model.User
@@ -144,7 +144,7 @@ func UpdateUser(usr model.User) (model.User, error) {
 
 // DeleteUserByID ...
 func DeleteUserByID(id int64) error {
-	db := configmysql.Connect()
+	db := configuration.Connect()
 	defer db.Close()
 
 	crt, err := db.Prepare("delete from m_user where id=?")

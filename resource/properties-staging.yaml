@@ -1,0 +1,5 @@
+DB:
+  USER_NAME: "root"
+  PASSWORD: "P@ssw0rd"
+  HOST_NAME: "localhost:3306"
+  NAME: "ms_account_dev"

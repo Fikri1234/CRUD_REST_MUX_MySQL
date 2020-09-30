@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"CRUD_REST_MUX_MySQL/configmysql"
+	"CRUD_REST_MUX_MySQL/configuration"
 	"CRUD_REST_MUX_MySQL/model"
 	"log"
 
@@ -15,7 +15,7 @@ import (
 
 // GetUserDetailByID ...
 func GetUserDetailByID(id int64) (model.UserDetail, error) {
-	db := configmysql.Connect()
+	db := configuration.Connect()
 
 	var userDtl model.UserDetail
 
@@ -41,7 +41,7 @@ func GetUserDetailByID(id int64) (model.UserDetail, error) {
 
 // GetUserDetails ...
 func GetUserDetails() ([]model.UserDetail, error) {
-	db := configmysql.Connect()
+	db := configuration.Connect()
 
 	var userDtl model.UserDetail
 	var userDtls []model.UserDetail
@@ -73,7 +73,7 @@ func GetUserDetails() ([]model.UserDetail, error) {
 
 // CreateUserDetail ...
 func CreateUserDetail(usr model.UserDetail) (model.UserDetail, error) {
-	db := configmysql.Connect()
+	db := configuration.Connect()
 	defer db.Close()
 
 	var userDtl model.UserDetail
@@ -110,7 +110,7 @@ func CreateUserDetail(usr model.UserDetail) (model.UserDetail, error) {
 
 // UpdateUserDetail ...
 func UpdateUserDetail(usr model.UserDetail) (model.UserDetail, error) {
-	db := configmysql.Connect()
+	db := configuration.Connect()
 	defer db.Close()
 
 	var userDtl model.UserDetail
@@ -135,7 +135,7 @@ func UpdateUserDetail(usr model.UserDetail) (model.UserDetail, error) {
 
 // DeleteUserDetailByID ...
 func DeleteUserDetailByID(id int64) error {
-	db := configmysql.Connect()
+	db := configuration.Connect()
 	defer db.Close()
 
 	crt, err := db.Prepare("delete from m_user_detail where id=?")
