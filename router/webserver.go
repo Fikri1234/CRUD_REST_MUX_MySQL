@@ -1,6 +1,7 @@
 package router
 
 import (
+	"CRUD_REST_MUX_MySQL/configuration"
 	"log"
 	"net/http"
 )
@@ -11,6 +12,7 @@ var client = &http.Client{}
 func WebServerConf(port string) {
 	// ==== old ways config from router.go
 	r := NewRouter()
+	r.Use(configuration.CORS)
 	http.Handle("/", r)
 
 	var transport http.RoundTripper = &http.Transport{

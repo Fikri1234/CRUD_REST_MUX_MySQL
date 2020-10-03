@@ -16,7 +16,7 @@ func initConfMySQL() {
 	hostname = viper.GetString("DB.HOST_NAME")
 	dbname = viper.GetString("DB.NAME")
 
-	fmt.Printf("username :%v, password: %v, hostname: %v, dbname: %v", username, password, hostname, dbname)
+	// fmt.Printf("username :%v, password: %v, hostname: %v, dbname: %v", username, password, hostname, dbname)
 }
 
 // Connect db

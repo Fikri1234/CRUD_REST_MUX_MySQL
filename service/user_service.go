@@ -35,7 +35,12 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 		util.ResponseWithError(w, http.StatusBadRequest, err.Error())
 		return
 	}
-	util.ResponseWithJSON(w, http.StatusOK, user)
+
+	if (model.User{}) == user {
+		util.ResponseWithJSON(w, http.StatusNotFound, user)
+	} else {
+		util.ResponseWithJSON(w, http.StatusOK, user)
+	}
 }
 
 // GetUsers data

@@ -6,7 +6,6 @@ import (
 	"CRUD_REST_MUX_MySQL/util"
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strconv"
 
@@ -26,7 +25,7 @@ var userDtls []model.UserDetail
 func GetUserDetailByID(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	varID, err := strconv.ParseInt(params["id"], 10, 64)
-	log.Print("userDtls")
+
 	if err != nil {
 		util.ResponseWithError(w, http.StatusBadRequest, err.Error())
 		return
@@ -37,7 +36,11 @@ func GetUserDetailByID(w http.ResponseWriter, r *http.Request) {
 		util.ResponseWithError(w, http.StatusBadRequest, err.Error())
 		return
 	}
-	util.ResponseWithJSON(w, http.StatusOK, userDtl)
+	if (model.UserDetail{}) == userDtl {
+		util.ResponseWithJSON(w, http.StatusNotFound, userDtl)
+	} else {
+		util.ResponseWithJSON(w, http.StatusOK, userDtl)
+	}
 }
 
 // GetUserDetails data
