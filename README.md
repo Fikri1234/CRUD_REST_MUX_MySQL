@@ -22,6 +22,7 @@ go get github.com/DATA-DOG/go-sqlmock
 go get github.com/stretchr/testify/assert
 ```
 2. Import dump.sql to your MySQL and configure your credential in folder resource
+![Alt text](asset/configureCredentialDB.PNG?raw=true "Configure your credential DB")
 3. Open cmd in your project directory and type `go test -v` , you should get a response similar to the following:
 ![Alt text](asset/unitTesting.PNG?raw=true "Response Unit Testing")
 
